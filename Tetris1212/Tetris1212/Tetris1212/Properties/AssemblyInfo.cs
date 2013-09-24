@@ -6,22 +6,24 @@ using System.Resources;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SlXnaApp1")]
+[assembly: AssemblyTitle("Tetris1212")]
+[assembly: AssemblyProduct("Tetris1212")]
 [assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("SlXnaApp1")]
 [assembly: AssemblyCopyright("Copyright ©  2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
 // to COM components.  If you need to access a type in this assembly from 
-// COM, set the ComVisible attribute to true on that type.
+// COM, set the ComVisible attribute to true on that type. Only Windows
+// assemblies support COM.
 [assembly: ComVisible(false)]
 
-// The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("0f9cd283-31f8-4f2c-baee-43ff4b1859aa")]
+// On Windows, the following GUID is for the ID of the typelib if this
+// project is exposed to COM. On other platforms, it unique identifies the
+// title storage container when deploying this assembly to the device.
+[assembly: Guid("3dc402ee-d834-4524-86ee-ef738a08d014")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -30,8 +32,5 @@ using System.Resources;
 //      Build Number
 //      Revision
 //
-// You can specify all the values or you can default the Revision and Build Numbers 
-// by using the '*' as shown below:
 [assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
 [assembly: NeutralResourcesLanguageAttribute("en-US")]

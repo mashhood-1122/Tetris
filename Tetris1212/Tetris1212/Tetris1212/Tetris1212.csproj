@@ -1,22 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <ProjectGuid>{D11346CD-4F0F-4570-BDE3-7ADF5AF97D9E}</ProjectGuid>
+    <ProjectGuid>{71253FA8-192B-4C49-A8B3-886845B5FF21}</ProjectGuid>
     <ProjectTypeGuids>{6D335F3A-9D43-41b4-9D22-F6F17C4BE596};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">Windows Phone</Platform>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SlXnaApp1Lib</RootNamespace>
-    <AssemblyName>SlXnaApp1Lib</AssemblyName>
+    <RootNamespace>Tetris1212</RootNamespace>
+    <AssemblyName>Tetris1212</AssemblyName>
+    <XnaRefreshLevel>1</XnaRefreshLevel>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <XnaFrameworkVersion>v4.0</XnaFrameworkVersion>
     <XnaPlatform>Windows Phone</XnaPlatform>
     <XnaProfile>Reach</XnaProfile>
-    <XnaCrossPlatformGroupID>16296bf6-f927-439f-9158-99c7d4538788</XnaCrossPlatformGroupID>
-    <XnaOutputType>Library</XnaOutputType>
-    <XnaRefreshLevel>1</XnaRefreshLevel>
+    <XnaCrossPlatformGroupID>3de5243a-e286-4bc0-ba46-e52e4f3a2ef9</XnaCrossPlatformGroupID>
+    <XnaOutputType>Game</XnaOutputType>
+    <WPTombstoneEnabled>false</WPTombstoneEnabled>
+    <XapFilename>$(AssemblyName).xap</XapFilename>
+    <SilverlightManifestTemplate>Properties\AppManifest.xml</SilverlightManifestTemplate>
+    <XnaWindowsPhoneManifestTemplate>Properties\WMAppManifest.xml</XnaWindowsPhoneManifestTemplate>
+    <TileImage>Background.png</TileImage>
+    <TileTitle>Tetris1212</TileTitle>
+    <SupportedCultures>
+    </SupportedCultures>
+    <ApplicationIcon>Game.ico</ApplicationIcon>
+    <Thumbnail>PhoneGameThumb.png</Thumbnail>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|Windows Phone' ">
     <DebugSymbols>true</DebugSymbols>
@@ -42,48 +51,44 @@
     <XnaCompressContent>false</XnaCompressContent>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Xna.Framework">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Microsoft.Xna.Framework.Game">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Microsoft.Xna.Framework.Graphics">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Microsoft.Xna.Framework.GamerServices">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Microsoft.Xna.Framework.Input.Touch">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="mscorlib">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="System">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="System.Xml">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="System.Core">
-      <RequiredTargetFramework>4.0</RequiredTargetFramework>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="System.Xml.Linq">
-      <RequiredTargetFramework>4.0</RequiredTargetFramework>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="System.Net">
-      <Private>False</Private>
-    </Reference>
+    <Reference Include="Microsoft.Xna.Framework" />
+    <Reference Include="Microsoft.Xna.Framework.Game" />
+    <Reference Include="Microsoft.Xna.Framework.Graphics" />
+    <Reference Include="Microsoft.Xna.Framework.GamerServices" />
+    <Reference Include="Microsoft.Xna.Framework.Input.Touch" />
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Block.cs" />
+    <Compile Include="BlockCombo.cs" />
+    <Compile Include="BlocksManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="Properties\AppManifest.xml">
+      <XnaPlatformSpecific>true</XnaPlatformSpecific>
+    </None>
+    <None Include="Properties\WMAppManifest.xml">
+      <XnaPlatformSpecific>true</XnaPlatformSpecific>
+    </None>
+    <Compile Include="Program.cs" />
+    <Compile Include="Game1.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SlXnaApp1LibContent\SlXnaApp1LibContent.contentproj">
-      <Name>SlXnaApp1LibContent</Name>
+    <Content Include="Game.ico" />
+    <Content Include="PhoneGameThumb.png">
+      <XnaPlatformSpecific>true</XnaPlatformSpecific>
+    </Content>
+    <Content Include="Background.png">
+      <XnaPlatformSpecific>true</XnaPlatformSpecific>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Tetris1212Content\Tetris1212Content.contentproj">
+      <Name>Tetris1212Content</Name>
       <XnaReferenceType>Content</XnaReferenceType>
     </ProjectReference>
   </ItemGroup>
