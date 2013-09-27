@@ -15,7 +15,7 @@ namespace Tetris1212
         public int[,] _Grid;
 
         public BlockCombo _currentBlock;
-        int _interval = 150;
+        int _interval = 250;
         int _timeSinceLastUpdate = 0;
                 public BlocksManager()
         { 
@@ -64,26 +64,11 @@ namespace Tetris1212
 
         public bool gameEnd() 
         {
-            int Check = 0;
-            for (int i = 0; i <= MaxWidth; i++)
-            {
-                Check = 0;
 
-                for (int j = 0; j <= MaxHeight; j++)
-                {
-                    if (_Grid[i, j] == 1)
-                    {
-                        Check = Check + 1;
-                    }
-                }
+            var blockObj = _currentBlock;
+            var blockRaw = blockObj.GetCurrent().BlockObj;
 
-                if (Check == MaxHeight)
-                {
-                    return true;
-                }
-            }
-
-                    return false;
+            return true;
         }
 
         public bool constrainBlock()
@@ -180,7 +165,7 @@ namespace Tetris1212
                     int pointIs = blockRaw[bx, by];
 
                     if (pointIs > 0 && pointY < MaxHeightX)
-                        _Grid[pointX, pointY] = pointIs;
+                        _Grid[pointX, pointY] = _currentBlock.color;
                 }
             }
 
@@ -189,36 +174,73 @@ namespace Tetris1212
         public void LineClear()
         {
             //int totalLinesToClear = 0;
-            List<int> linesToClear = new List<int>();
+            int[,] _Grid1 = new int[MaxWidth, MaxHeightX];
 
-            for (int j=MaxHeightX-1; j>=0; j--)
+            for (int y = MaxHeightX-1; y >= 4; y--)
             {
-                bool lineClearFlag = true;
-                for (int i=MaxWidth-1; i>=0; i--)
+                if(_Grid[0,y] != 0 &&_Grid[1,y] !=0 && _Grid[2,y] !=0 && _Grid[3,y] != 0 && _Grid[4,y] != 0 &&_Grid[5,y] != 0 &&_Grid[6,y] != 0 &&_Grid[7,y] != 0 &&_Grid[8,y] != 0 &&_Grid[9,y] != 0)
                 {
-                    if (_Grid[i,j] == 0)
+                    for (int x=y ;x>=4;x--)
                     {
-                        lineClearFlag = false;
-                        break;
+                        _Grid1[0, x] = _Grid[0, x - 1];
+                        _Grid1[1, x] = _Grid[1, x - 1];
+                        _Grid1[2, x] = _Grid[2, x - 1];
+                        _Grid1[3, x] = _Grid[3, x - 1];
+                        _Grid1[4, x] = _Grid[4, x - 1];
+                        _Grid1[5, x] = _Grid[5, x - 1];
+                        _Grid1[6, x] = _Grid[6, x - 1];
+                        _Grid1[7, x] = _Grid[7, x - 1];
+                        _Grid1[8, x] = _Grid[8, x - 1];
+                        _Grid1[9, x] = _Grid[9, x - 1];
                     }
                 }
-                if (lineClearFlag)
+                else
                 {
-                    linesToClear.Add( j );
+                    _Grid1[0, y] = _Grid[0, y];
+                    _Grid1[1, y] = _Grid[1, y];
+                    _Grid1[2, y] = _Grid[2, y];
+                    _Grid1[3, y] = _Grid[3, y];
+                    _Grid1[4, y] = _Grid[4, y];
+                    _Grid1[5, y] = _Grid[5, y];
+                    _Grid1[6, y] = _Grid[6, y];
+                    _Grid1[7, y] = _Grid[7, y];
+                    _Grid1[8, y] = _Grid[8, y];
+                    _Grid1[9, y] = _Grid[9, y];
                 }
             }
 
-            //for (int x = MaxHeightX - 1; x >= MaxHeightX - 1 - totalLinesToClear; x--)
-            foreach(int x in linesToClear)
-            for (int j = MaxHeightX - 1; j >= 0; j--)
-            {
-                for (int i = MaxWidth - 1; i >= 0; i--)
-                {
-                    if (j - (MaxHeightX-x) < 0)
-                        continue;
-                    _Grid[i, j] = _Grid[i, j - (MaxHeightX - x)];
-                }
-            }
+            this._Grid=_Grid1;
+
+            //List<int> linesToClear = new List<int>();
+
+            //for (int j=MaxHeightX-1; j>=0; j--)
+            //{
+            //    bool lineClearFlag = true;
+            //    for (int i=MaxWidth-1; i>=0; i--)
+            //    {
+            //        if (_Grid[i,j] == 0)
+            //        {
+            //            lineClearFlag = false;
+            //            break;
+            //        }
+            //    }
+            //    if (lineClearFlag)
+            //    {
+            //        linesToClear.Add( j );
+            //    }
+            //}
+
+            ////for (int x = MaxHeightX - 1; x >= MaxHeightX - 1 - totalLinesToClear; x--)
+            //foreach(int x in linesToClear)
+            //for (int j = MaxHeightX - 1; j >= 0; j--)
+            //{
+            //    for (int i = MaxWidth - 1; i >= 0; i--)
+            //    {
+            //        if (j - (MaxHeightX-x) < 0)
+            //            continue;
+            //        _Grid[i, j] = _Grid[i, j - (MaxHeightX - x)];
+            //    }
+            //}
 
         }
 

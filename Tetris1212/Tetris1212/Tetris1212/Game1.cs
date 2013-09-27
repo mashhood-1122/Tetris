@@ -30,7 +30,7 @@ namespace Tetris1212
         SpriteFont Font;
 
         BlocksManager _bMgr;
-        String[] colorBlocks = { ".\\blockYellow", ".\\blockRed", ".\\blockPink", ".\\blockGreen", ".\\blockBlue" };
+        String[] colorBlocks = {"", ".\\blockYellow", ".\\blockRed", ".\\blockPink", ".\\blockGreen", ".\\blockBlue" };
         String time = "";
         
 
@@ -77,9 +77,9 @@ namespace Tetris1212
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            Random r = new Random();
-            int id = r.Next(0, 4);
-            blockYellow = this.Content.Load<Texture2D>(colorBlocks[id]);
+            //Random r = new Random();
+            //int id = r.Next(0, 4);
+            blockYellow = this.Content.Load<Texture2D>(colorBlocks[1]);
             Font = this.Content.Load<SpriteFont>("SpriteFont1");
 
             //blockYellow = this.Content.Load<Texture2D>(".\\blockYellow");
@@ -163,12 +163,12 @@ namespace Tetris1212
             var blockRaw = blockObj.GetCurrent().BlockObj;
 
             int test = _bMgr.CurrentBlockYPosition();
-            if (test == 0)
-            {
-                Random r = new Random();
-                int id = r.Next(0, 4);
-                blockYellow = this.Content.Load<Texture2D>(colorBlocks[id]);
-            }
+            //if (test == 0)
+            //{
+            //    Random r = new Random();
+            //    int id = r.Next(0, 4);
+            //    blockYellow = this.Content.Load<Texture2D>(colorBlocks[id]);
+            //}
             //var zzz = blockObj.BlockObj;
 
             for (int bx = 0; bx < 4; bx++ )
@@ -179,15 +179,45 @@ namespace Tetris1212
                     var vecOffset = new Vector2();
                     vecOffset += coorBlocks;
                     vecOffset.X += bx * blockDrawSize + blockDrawSize * blockObj.PosX;
-                    vecOffset.Y += by * blockDrawSize + blockDrawSize * blockObj.PosY; 
+                    vecOffset.Y += by * blockDrawSize + blockDrawSize * blockObj.PosY;
+                    int color = blockObj.color;
+                    blockYellow = this.Content.Load<Texture2D>(colorBlocks[color]);
                     spriteBatch.Draw(blockYellow, vecOffset, Color.White);
                 }
 
             for (int bx = 0; bx < MaxWidth; bx++)
                 for (int by = 0; by < MaxHeightX; by++)
                 {
-                    if (_bMgr._Grid[bx, by] > 0)
+                    if (_bMgr._Grid[bx, by] == 1)
                     {
+                        blockYellow = this.Content.Load<Texture2D>(colorBlocks[1]);
+                        spriteBatch.DrawString(Font, ""+time, (new Vector2(0, 0)), Color.White);
+                        spriteBatch.Draw(blockYellow, coorBlocks + (new Vector2(blockDrawSize * bx, blockDrawSize * by)), Color.White);
+                    }
+
+                    else if (_bMgr._Grid[bx, by] == 2)
+                    {
+                        blockYellow = this.Content.Load<Texture2D>(colorBlocks[2]);
+                        spriteBatch.DrawString(Font, "" + time, (new Vector2(0, 0)), Color.White);
+                        spriteBatch.Draw(blockYellow, coorBlocks + (new Vector2(blockDrawSize * bx, blockDrawSize * by)), Color.White);
+                    }
+
+                    else if (_bMgr._Grid[bx, by] == 3)
+                    {
+                        blockYellow = this.Content.Load<Texture2D>(colorBlocks[3]);
+                        spriteBatch.DrawString(Font, "" + time, (new Vector2(0, 0)), Color.White);
+                        spriteBatch.Draw(blockYellow, coorBlocks + (new Vector2(blockDrawSize * bx, blockDrawSize * by)), Color.White);
+                    }
+
+                    else if (_bMgr._Grid[bx, by] == 4)
+                    {
+                        blockYellow = this.Content.Load<Texture2D>(colorBlocks[4]);
+                        spriteBatch.DrawString(Font, "" + time, (new Vector2(0, 0)), Color.White);
+                        spriteBatch.Draw(blockYellow, coorBlocks + (new Vector2(blockDrawSize * bx, blockDrawSize * by)), Color.White);
+                    }
+                    else if (_bMgr._Grid[bx, by] == 5)
+                    {
+                        blockYellow = this.Content.Load<Texture2D>(colorBlocks[5]);
                         spriteBatch.DrawString(Font, ""+time, (new Vector2(0, 0)), Color.White);
                         spriteBatch.Draw(blockYellow, coorBlocks + (new Vector2(blockDrawSize * bx, blockDrawSize * by)), Color.White);
                     }

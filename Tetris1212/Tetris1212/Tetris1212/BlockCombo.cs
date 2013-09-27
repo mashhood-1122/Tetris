@@ -8,6 +8,7 @@ namespace Tetris1212
     public class BlockCombo
     {
         public List<Block> Combo;
+        public int color = 0;
         public int PosX { get; set; }
         public int PosY { get; set; }
 
@@ -52,6 +53,7 @@ namespace Tetris1212
     {
         public BlockI() : base()
         {
+            base.color = 1;
             var block = new Block();
             block.BlockObj = new int[4, 4] {{0,0,1,0},
                                            {0,0,1,0},
@@ -74,6 +76,7 @@ namespace Tetris1212
         public BlockJ()
             : base()
         {
+            base.color = 2;
             var block = new Block();
             block.BlockObj = new int[4, 4] {{0,1,0,0},
                                            {0,1,0,0},
@@ -111,6 +114,7 @@ namespace Tetris1212
         public BlockL()
             : base()
         {
+            base.color = 3;
             var block = new Block();
             block.BlockObj = new int[4, 4] {{0,0,1,0},
                                            {0,0,1,0},
@@ -150,6 +154,7 @@ namespace Tetris1212
         public BlockO()
             : base()
         {
+            base.color = 4;
             var block = new Block();
             block.BlockObj = new int[4, 4] {{0,0,0,0},
                                            {0,1,1,0},
@@ -166,6 +171,7 @@ namespace Tetris1212
         public BlockS()
             : base()
         {
+            base.color = 5;
             var block = new Block();
             block.BlockObj = new int[4, 4] {{0,0,0,0},
                                            {0,0,1,1},
@@ -191,6 +197,7 @@ namespace Tetris1212
         public BlockT()
             : base()
         {
+            base.color = 2;
             var block = new Block();
             block.BlockObj = new int[4, 4] {{0,0,0,0},
                                            {0,1,0,0},
@@ -222,6 +229,7 @@ namespace Tetris1212
         public BlockZ()
             : base()
         {
+            base.color = 3;
             var block = new Block();
             block.BlockObj = new int[4, 4] {{0,0,0,0},
                                            {1,1,0,0},
