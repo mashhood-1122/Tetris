@@ -13,10 +13,15 @@ namespace Tetris1212
         const int MaxHeight = 20;
         const int MaxHeightX = 24;
         public int[,] _Grid;
+        public int linesClear = 0;
 
         public BlockCombo _currentBlock;
-        int _interval = 250;
+        int _interval = 500;
+        public int Level = 1;
         int _timeSinceLastUpdate = 0;
+
+        bool over = true;
+
                 public BlocksManager()
         { 
             _availableBlocks = new List<BlockCombo>();
@@ -50,7 +55,9 @@ namespace Tetris1212
                         ResetWithNewBlock();
                     }
                     else
+                    {
                         _currentBlock.PosY += 1;
+                    }
                     _timeSinceLastUpdate = 0;
                 }
             
@@ -64,11 +71,7 @@ namespace Tetris1212
 
         public bool gameEnd() 
         {
-
-            var blockObj = _currentBlock;
-            var blockRaw = blockObj.GetCurrent().BlockObj;
-
-            return true;
+            return over;
         }
 
         public bool constrainBlock()
@@ -193,6 +196,8 @@ namespace Tetris1212
                         _Grid1[8, x] = _Grid[8, x - 1];
                         _Grid1[9, x] = _Grid[9, x - 1];
                     }
+                    this._Grid = _Grid1;
+                    y = MaxHeightX - 1; 
                 }
                 else
                 {
@@ -244,6 +249,26 @@ namespace Tetris1212
 
         }
 
+        public int NumbersofLineToClear()
+        {
+            int lines = 0;
+            for (int y = MaxHeightX - 1; y >= 4; y--)
+            {
+                if (_Grid[0, y] != 0 && _Grid[1, y] != 0 && _Grid[2, y] != 0 && _Grid[3, y] != 0 && _Grid[4, y] != 0 && _Grid[5, y] != 0 && _Grid[6, y] != 0 && _Grid[7, y] != 0 && _Grid[8, y] != 0 && _Grid[9, y] != 0)
+                {
+                    lines++;
+                }
+            }
+            linesClear += lines;
+            if (linesClear>3)
+            {
+                Level++;
+                _interval -= 100;
+            }
+            return lines;
+ 
+        }
+
         public void ResetWithNewBlock()
         {
             _currentBlock.PosY = 0;
@@ -252,7 +277,15 @@ namespace Tetris1212
             _currentBlock = _availableBlocks[ r.Next(0, maxBlocks) ];
             _currentBlock.PosX = 4;
 
-            LineClear();
+            if (_Grid[4, 4] != 0 || _Grid[5, 4] != 0 || _Grid[6, 4] != 0 || _Grid[7, 4] != 0)
+            {
+               over = false;
+
+            }
+
+            int a = NumbersofLineToClear();
+            for (int i = 1; i <= a;i++)
+                LineClear();
         }
     }
 }
